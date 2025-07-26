@@ -1,4 +1,4 @@
-#### This is the 'Master File'.  It contains the main functions regarding simulation and estimation.  
+#### This is the 'Master File'.  It contains the main functions regarding simulation and estimation.
 #### This file needs to be sourced in order to run all the other R files in this folder
 #### All programs written by Jose Miguel Ponciano at University of Florida, Spring 2014
 
@@ -248,6 +248,119 @@ model.profmle <- function(par.vec, data.vec, M, model.flag){
 		
 	}
 }
+
+
+# Optim output reader, parameter oganizer
+optim.out.organizer <- function(opt.object,model.flag="m8"){
+  
+  par.vec <- opt.object$par
+  negll   <- opt.object$value
+  
+  out1 <- matrix(0,nrow=1,ncol=7)
+  colnames(out1) <- c("a_1", "a_2", "c_1", "c_2", "sigma^{2}_1", "sigma^{2}_2","tau^{2}")
+  
+  if(model.flag=="m1"){
+    
+    a1      <- exp(par.vec[1]); # constrains a>0
+    c1      <- tanh(par.vec[2]);# constrains c<1
+    sigmasq1  <- exp(par.vec[3]); # constrains sigmasq>0
+    vsq.val <- exp(par.vec[4]); # constrains nusq >0
+    vsq.vec <- rep(vsq.val, taupqp1);
+    a2 <- a1; c2 <- c1; sigmasq2 <- sigmasq1;
+    nparms <- length(par.vec)
+    tausq <- exp(par.vec[nparms])
+    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    
+    
+  }else if(model.flag=="m2"){
+    
+    a1       <- exp(par.vec[1]);
+    c1       <- tanh(par.vec[2]);
+    sigmasq1   <- exp(par.vec[3]);
+    sigmasq2   <- exp(par.vec[4]);
+    a2 <- a1; c2 <- c1;
+    nparms <- length(par.vec)
+    tausq <- exp(par.vec[nparms])
+    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    
+  }else if(model.flag=="m3"){
+    
+    a1       <- exp(par.vec[1]);
+    c1       <- tanh(par.vec[2]);
+    c2       <- tanh(par.vec[3]);
+    sigmasq1 <- exp(par.vec[4]);
+    a2 <- a1; sigmasq2 <- sigmasq1;
+    nparms <- length(par.vec)
+    tausq <- exp(par.vec[nparms])
+    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    
+  }else if(model.flag=="m4"){
+    
+    a1       <- exp(par.vec[1]);
+    a2       <- exp(par.vec[2]);
+    c1       <- tanh(par.vec[3]);
+    sigmasq1 <- exp(par.vec[4]);
+    c2 <- c1; sigmasq2 <- sigmasq1;
+    nparms <- length(par.vec)
+    tausq <- exp(par.vec[nparms])
+    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    
+  }else if(model.flag=="m5"){
+    
+    a1       <- exp(par.vec[1]);
+    a2       <- exp(par.vec[2]);
+    c1       <- tanh(par.vec[3]);
+    c2       <- tanh(par.vec[4]);
+    sigmasq1 <-  exp(par.vec[5]);
+    sigmasq2 <- sigmasq1;
+    nparms <- length(par.vec)
+    tausq <- exp(par.vec[nparms])
+    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    
+  }else if(model.flag=="m6"){
+    
+    a1       <- exp(par.vec[1]) ;
+    c1       <- tanh(par.vec[2]);
+    c2       <- tanh(par.vec[3]);
+    sigmasq1 <- exp(par.vec[4]);
+    sigmasq2 <- exp(par.vec[5]);
+    a2       <- a1;
+    nparms <- length(par.vec)
+    tausq <- exp(par.vec[nparms])
+    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    
+  }else if(model.flag=="m7"){
+    
+    a1       <- exp(par.vec[1]);
+    a2       <- exp(par.vec[2]);
+    c1       <- tanh(par.vec[3]);
+    sigmasq1 <- exp(par.vec[4]);
+    sigmasq2 <- exp(par.vec[5]);
+    c2       <- c1;
+    nparms <- length(par.vec)
+    tausq <- exp(par.vec[nparms])
+    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    
+  }else if(model.flag=="m8"){
+    
+    a1       <- exp(par.vec[1]);
+    a2       <- exp(par.vec[2]);
+    c1       <- tanh(par.vec[3]);
+    c2       <- tanh(par.vec[4]);
+    sigmasq1 <- exp(par.vec[5]);
+    sigmasq2 <- exp(par.vec[6]);
+    nparms <- length(par.vec)
+    tausq <- exp(par.vec[nparms])
+    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    
+  }else{print("Model number not specified")}
+  
+  return(out1)
+  
+  
+}
+
+
 
 
 ###  Function to simulate under the demographic + two forms of environmental noise!!
