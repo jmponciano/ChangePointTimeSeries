@@ -92,7 +92,7 @@ model.profmle <- function(par.vec, data.vec, M, model.flag){
 	taupqp1 <- length(data.vec); # tau + q + 1
 	q       <- taupqp1-tau-1;	
 	qp1     <- q + 1;	
-
+    
 	
 	if(model.flag=="m1"){
 		
@@ -102,6 +102,7 @@ model.profmle <- function(par.vec, data.vec, M, model.flag){
 		vsq.val <- exp(par.vec[4]); # constrains nusq >0
 		vsq.vec <- rep(vsq.val, taupqp1);
 		a2 <- a1; c2 <- c1; sigmasq2 <- sigmasq1;
+        nparms <- length(par.vec)
 		
 	}else if(model.flag=="m2"){
 		
@@ -110,7 +111,8 @@ model.profmle <- function(par.vec, data.vec, M, model.flag){
 		sigmasq1   <- exp(par.vec[3]);
 		sigmasq2   <- exp(par.vec[4]);
 		a2 <- a1; c2 <- c1;
-		
+        nparms <- length(par.vec)
+        
 	}else if(model.flag=="m3"){
 		
 		a1       <- exp(par.vec[1]);
@@ -118,7 +120,8 @@ model.profmle <- function(par.vec, data.vec, M, model.flag){
 		c2       <- tanh(par.vec[3]);
 		sigmasq1 <- exp(par.vec[4]); 
 		a2 <- a1; sigmasq2 <- sigmasq1;
-		
+        nparms <- length(par.vec)
+        
 	}else if(model.flag=="m4"){
 		
 		a1       <- exp(par.vec[1]);
@@ -126,7 +129,8 @@ model.profmle <- function(par.vec, data.vec, M, model.flag){
 		c1       <- tanh(par.vec[3]); 
 		sigmasq1 <- exp(par.vec[4]); 
 		c2 <- c1; sigmasq2 <- sigmasq1;
-		
+        nparms <- length(par.vec)
+        
 	}else if(model.flag=="m5"){
 		
 		a1       <- exp(par.vec[1]); 
@@ -135,7 +139,8 @@ model.profmle <- function(par.vec, data.vec, M, model.flag){
 		c2       <- tanh(par.vec[4]);		
 		sigmasq1 <-  exp(par.vec[5]); 
 		sigmasq2 <- sigmasq1; 
-		
+        nparms <- length(par.vec)
+        
 	}else if(model.flag=="m6"){
 		
 		a1       <- exp(par.vec[1]) ;
@@ -144,6 +149,7 @@ model.profmle <- function(par.vec, data.vec, M, model.flag){
 		sigmasq1 <- exp(par.vec[4]);
 		sigmasq2 <- exp(par.vec[5]);
 		a2       <- a1;
+        nparms <- length(par.vec)
 
 	}else if(model.flag=="m7"){
 
@@ -153,7 +159,8 @@ model.profmle <- function(par.vec, data.vec, M, model.flag){
 		sigmasq1 <- exp(par.vec[4]);
 		sigmasq2 <- exp(par.vec[5]);
 		c2       <- c1;		
-		
+        nparms <- length(par.vec)
+        
 	}else if(model.flag=="m8"){
 		
 		a1       <- exp(par.vec[1]); 
@@ -162,7 +169,8 @@ model.profmle <- function(par.vec, data.vec, M, model.flag){
 		c2       <- tanh(par.vec[4]);
 		sigmasq1 <- exp(par.vec[5]);
 		sigmasq2 <- exp(par.vec[6]);
-		
+        nparms <- length(par.vec)
+        
 	}else{print("Model number not specified")}
 
 	#if(sigmasq1 < sigma.thresh) {sigma.thresh.flag <<-TRUE; sigmasq1 <- sigma.thresh}
@@ -228,7 +236,7 @@ model.profmle <- function(par.vec, data.vec, M, model.flag){
 	}
 
 	# Observation error var-covar
-	vsq.vec  <- rep(exp(par.vec[7]), nrow(Sigma.tau));
+	vsq.vec  <- rep(exp(par.vec[nparms]), nrow(Sigma.tau));
 	V.tau         <- Sigma.tau + diag(vsq.vec);
     if(any(diag(V.tau) < 0 )) {return(NA)}    
     Vinv			<- try(solve(V.tau,tol=1e-25),silent=T);
