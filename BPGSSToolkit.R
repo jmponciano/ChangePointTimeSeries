@@ -269,7 +269,7 @@ optim.out.organizer <- function(opt.object,model.flag="m8"){
     a2 <- a1; c2 <- c1; sigmasq2 <- sigmasq1;
     nparms <- length(par.vec)
     tausq <- exp(par.vec[nparms])
-    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    out1[1,1:7] <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
     
     
   }else if(model.flag=="m2"){
@@ -281,7 +281,7 @@ optim.out.organizer <- function(opt.object,model.flag="m8"){
     a2 <- a1; c2 <- c1;
     nparms <- length(par.vec)
     tausq <- exp(par.vec[nparms])
-    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    out1[1,1:7] <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
     
   }else if(model.flag=="m3"){
     
@@ -292,7 +292,7 @@ optim.out.organizer <- function(opt.object,model.flag="m8"){
     a2 <- a1; sigmasq2 <- sigmasq1;
     nparms <- length(par.vec)
     tausq <- exp(par.vec[nparms])
-    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    out1[1,1:7] <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
     
   }else if(model.flag=="m4"){
     
@@ -303,7 +303,7 @@ optim.out.organizer <- function(opt.object,model.flag="m8"){
     c2 <- c1; sigmasq2 <- sigmasq1;
     nparms <- length(par.vec)
     tausq <- exp(par.vec[nparms])
-    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    out1[1,1:7] <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
     
   }else if(model.flag=="m5"){
     
@@ -315,7 +315,7 @@ optim.out.organizer <- function(opt.object,model.flag="m8"){
     sigmasq2 <- sigmasq1;
     nparms <- length(par.vec)
     tausq <- exp(par.vec[nparms])
-    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    out1[1,1:7] <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
     
   }else if(model.flag=="m6"){
     
@@ -327,7 +327,7 @@ optim.out.organizer <- function(opt.object,model.flag="m8"){
     a2       <- a1;
     nparms <- length(par.vec)
     tausq <- exp(par.vec[nparms])
-    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    out1[1,1:7] <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
     
   }else if(model.flag=="m7"){
     
@@ -339,7 +339,7 @@ optim.out.organizer <- function(opt.object,model.flag="m8"){
     c2       <- c1;
     nparms <- length(par.vec)
     tausq <- exp(par.vec[nparms])
-    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    out1[1,1:7] <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
     
   }else if(model.flag=="m8"){
     
@@ -351,7 +351,7 @@ optim.out.organizer <- function(opt.object,model.flag="m8"){
     sigmasq2 <- exp(par.vec[6]);
     nparms <- length(par.vec)
     tausq <- exp(par.vec[nparms])
-    parms.out <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
+    out1[1,1:7] <- round(c(a1,a2,c1,c2,sigmasq1,sigmasq2,tausq),digits=4)
     
   }else{print("Model number not specified")}
   
