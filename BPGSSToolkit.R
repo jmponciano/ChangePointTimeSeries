@@ -264,8 +264,8 @@ optim.out.organizer <- function(opt.object,model.flag="m8"){
     a1      <- exp(par.vec[1]); # constrains a>0
     c1      <- tanh(par.vec[2]);# constrains c<1
     sigmasq1  <- exp(par.vec[3]); # constrains sigmasq>0
-    vsq.val <- exp(par.vec[4]); # constrains nusq >0
-    vsq.vec <- rep(vsq.val, taupqp1);
+    tausq <- exp(par.vec[4]); # constrains nusq >0
+    
     a2 <- a1; c2 <- c1; sigmasq2 <- sigmasq1;
     nparms <- length(par.vec)
     tausq <- exp(par.vec[nparms])
